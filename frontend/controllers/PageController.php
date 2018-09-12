@@ -11,42 +11,31 @@ use base\View;
 
 class PageController extends BaseController
 {
-
-    public function websocket()
-    {
-        $socket = stream_socket_server("tcp://127.0.0.0:8000", $errno, $errstr);
-
-        if (!$socket) {
-            die("$errstr ($errno)\n");
-        }
-
-        while ($connect = stream_socket_accept($socket, -1)) {
-            fwrite($connect, "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nConnection: close\r\n\r\nПривет");
-            fclose($connect);
-        }
-
-        fclose($socket);
-    }
-
     // вьюха домашней страницы
-    public function indexCommand()
+    public function indexAction()
     {
         // генерируем вьювку
        $this->view('index');
     }
 
-    public function aboutCommand()
+    public function aboutAction()
     {
         $this->view('about');
     }
 
-    public function deliveryCommand()
+    public function deliveryAction()
     {
         $this->view('delivery');
     }
-    public function studentsCommand()
+
+    public function studentsAction()
     {
         $this->view('students');
+    }
+
+    public function testAction()
+    {
+
     }
 
     protected function before() {
