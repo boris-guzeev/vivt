@@ -18,8 +18,8 @@ class VIVT
     public static function init()
     {
         self::setupFolders();
-        self::setupRouting();
         self::setupObjects();
+        self::setupRouting();
     }
 
     private static function setupFolders()
