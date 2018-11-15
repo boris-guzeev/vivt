@@ -37,4 +37,10 @@ abstract class DomainObject
             throw new \Exception("Свойства $name не существует!");
         }
     }
+
+    /**
+     * Возвращает имя таблицы
+     * @return string
+     */
+    abstract public function tableName();
 }

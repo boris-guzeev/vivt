@@ -13,26 +13,34 @@ namespace base;
 class Database
 {
     private $pdo;
-    private static $db;
+    private static $_instance;
 
     private function __construct()
     {
         //подключение бд
         $user = 'root';
         $pass = '';
-        $this->pdo = new \PDO('mysql:host=localhost;dbname=learning', $user, $pass);
+        $this->pdo = new \PDO('mysql:host=localhost;dbname=shop;charset=utf8', $user, $pass);
+        $this->pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+        $this->pdo->setAttribute(\PDO::ATTR_EMULATE_PREPARES, false);
     }
 
     public static function instance()
     {
-        if (empty(self::$db))
-            self::$db = new self;
+        if (empty(self::$_instance))
+            self::$_instance = new self;
 
-        return self::$db;
+        return self::$_instance;
     }
 
-    public function getPDO ()
+    /**
+     * Возвращает объект PDO
+     * @return \PDO
+     */
+    public function getPDO()
     {
         return $this->pdo;
     }
+
+    private function __clone() {}
 }

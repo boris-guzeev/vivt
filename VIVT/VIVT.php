@@ -1,7 +1,7 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Boris
+ * User: Boris Guzeev
  * Date: 01.08.2018
  * Time: 18:32
  */
@@ -10,6 +10,9 @@ use \routing\Router;
 use \base\Database;
 use \routing\Matcher;
 
+/**
+ * @property Database db
+ */
 class VIVT
 {
     public static $db;
@@ -30,6 +33,7 @@ class VIVT
         // укажем директории для подключения
         $dirs = [
             'vivt/base',
+            'vivt/domain',
             'vivt/routing',
             'frontend/controllers',
             'frontend/models',
